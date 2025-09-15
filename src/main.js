@@ -2,6 +2,7 @@ import { createApp } from "vue"
 import { createPinia } from "pinia"
 import App from "./App.vue"
 import router from "./router"
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 // Tailwind + Flowbite
 import "./assets/main.css"
