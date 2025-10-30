@@ -2,7 +2,6 @@
 import { onMounted, onBeforeUnmount } from "vue"
 import { useAuthStore } from "@/stores/auth"
 import { useTaskStore } from "@/stores/tasks"
-import AppNavbar from "@/components/AppNavbar.vue"
 import TaskForm from "@/components/TaskForm.vue"
 import TaskBoard from "@/components/TaskBoard.vue"
 
@@ -20,7 +19,6 @@ onBeforeUnmount(() => tasks.unbind())
 
 <template>
   <div class="min-h-screen bg-gray-50">
-    <AppNavbar />
     <main class="max-w-5xl mx-auto p-6">
       <div class="mb-6">
         <h1 class="text-2xl font-bold">Tasks</h1>

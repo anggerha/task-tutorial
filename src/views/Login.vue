@@ -15,11 +15,6 @@ async function onLogin() {
   await auth.loginEmail(email.value, password.value)
   if (!auth.error) router.push(route.query.redirect || "/")
 }
-async function onRegister() { await auth.registerEmail(email.value, password.value) }
-async function onGoogle() {
-  await auth.loginGoogle()
-  if (!auth.error) router.push("/")
-}
 </script>
 
 <template>

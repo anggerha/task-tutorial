@@ -2,6 +2,7 @@
 import { ref, onMounted, onBeforeUnmount } from "vue"
 import { useTutorialStore } from "@/stores/tutorials"
 import { Modal } from "flowbite"
+import { QuillEditor } from "@vueup/vue-quill"
 
 const tuts = useTutorialStore()
 
@@ -15,6 +16,14 @@ const editing = ref({ id: null, title: "", content: "" })
 const saving = ref(false)
 const editModalEl = ref(null)
 let editModal = null
+
+const toolbar = [
+  ["bold", "italic", "underline", "strike"],
+  [{ header: 1 }, { header: 2 }],
+  [{ list: "ordered" }, { list: "bullet" }],
+  ["link", "blockquote", "code-block"],
+  ["clean"],
+]
 
 onMounted(() => {
   if (deleteModalEl.value) deleteModal = new Modal(deleteModalEl.value, { placement: "center", backdrop: "dynamic", closable: true })
@@ -64,7 +73,7 @@ async function confirmRemove(){ if(toDelete.value?.id) await tuts.removeTutorial
         <button type="button" @click="closeConfirm" class="absolute top-3 right-3 text-gray-400 hover:text-gray-600">✕</button>
         <div class="p-6 text-center">
           <h3 class="mb-5 text-lg font-normal text-gray-700">Hapus <b>{{ toDelete?.title }}</b>?</h3>
-          <button @click="confirmRemove" class="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2">Ya, hapus</button>
+          <button @click="confirmRemove" class="text-white bg-red-600 edithover:bg-red-700 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2">Ya, hapus</button>
           <button @click="closeConfirm" class="text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5">Batal</button>
         </div>
       </div>
@@ -85,7 +94,15 @@ async function confirmRemove(){ if(toDelete.value?.id) await tuts.removeTutorial
             </div>
             <div>
               <label class="block text-sm font-medium mb-1">Isi</label>
-              <textarea v-model="editing.content" rows="4" class="bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"></textarea>
+              <div class="quill-card">
+                <QuillEditor
+                  v-model:content="editing.content"
+                  content-type="html"
+                  theme="snow"
+                  :toolbar="toolbar"
+                  placeholder="Tulis isi memo di sini…"
+                />
+              </div>
             </div>
           </div>
           <div class="mt-6 flex justify-end gap-2">
