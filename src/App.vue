@@ -6,6 +6,12 @@ const auth = useAuthStore()
 </script>
 
 <template>
-  <AppNavbar v-if="auth.user"/>
-  <router-view />
+  <div class="w-full">
+    <AppNavbar v-if="auth.user"/>
+  </div>
+
+  <!-- tambahkan padding top setinggi navbar (≈56px) -->
+  <main class="pt-14 md:pt-16">
+    <router-view />
+  </main>
 </template>

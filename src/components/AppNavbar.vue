@@ -7,12 +7,14 @@ const router = useRouter()
 const route = useRoute()
 const auth = useAuthStore()
 
-async function logout() { await auth.logout(); router.push("/login") }
+async function logout() { 
+  await auth.logout(); router.push("/login") 
+}
 </script>
 
 <template>
-  <nav class="bg-gradient-to-r from-blue-800/90 to-orange-500/90 border-b w-full top-0 left-0">
-    <div class="mx-auto px-4 py-3 flex items-center justify-between">
+  <nav class="fixed top-0 z-50 bg-gradient-to-r from-blue-800/90 to-orange-500/90 w-full">
+    <div class="mx-auto px-4 py-3 flex items-center justify-between backdrop-blur-sm">
       <div class="flex items-center gap-6">
         <app-sidebar />
       </div>
