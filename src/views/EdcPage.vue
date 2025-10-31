@@ -6,7 +6,7 @@ import EdcForm from "@/components/EdcForm.vue"
 import EdcTable from "@/components/EdcTable.vue"
 
 const auth = useAuthStore()
-const edc = useEdcStore()
+const edc  = useEdcStore()
 
 onMounted(() => {
   auth.init()
@@ -19,10 +19,10 @@ onBeforeUnmount(() => edc.unbind())
 
 <template>
   <div class="min-h-screen bg-gray-50">
-    <main class="max-w-5xl mx-auto p-6 space-y-6">
-        <h1 class="text-2xl font-bold">Data EDC</h1>
-        <EdcForm />
-        <EdcTable />
+    <main class="max-w-6xl mx-auto p-6 space-y-6">
+      <h1 class="text-2xl font-bold">Data EDC</h1>
+      <EdcForm />
+      <EdcTable />
     </main>
   </div>
 </template>
